@@ -1,0 +1,22 @@
+2024-08-20 14:46:00,580 INFO _internal _log [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-20 14:46:00,580 INFO _internal _log [33mPress CTRL+C to quit[0m
+2024-08-20 14:46:23,686 ERROR app log_exception Exception on /usuarios [GET]
+Traceback (most recent call last):
+  File "/home/alyssonp/Pweb2/workspace/cafeapi/venv/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/alyssonp/Pweb2/workspace/cafeapi/venv/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/alyssonp/Pweb2/workspace/cafeapi/venv/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/alyssonp/Pweb2/workspace/cafeapi/venv/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/alyssonp/Pweb2/workspace/cafeapi/app.py", line 80, in usuarios
+    return (jsonify(getUsuarios(), 200))
+  File "/home/alyssonp/Pweb2/workspace/cafeapi/app.py", line 18, in getUsuarios
+    usuarios = cursor.execute('SELECT * FROM tb_usuario').fetchall()
+psycopg2.errors.UndefinedTable: relation "tb_usuario" does not exist
+LINE 1: SELECT * FROM tb_usuario
+                      ^
+
+2024-08-20 14:46:23,687 INFO _internal _log 127.0.0.1 - - [20/Aug/2024 14:46:23] "[35m[1mGET /usuarios HTTP/1.1[0m" 500 -

@@ -1,0 +1,30 @@
+DROP TABLE IF EXISTS tb_usuario;
+CREATE TABLE tb_usuario (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  nome TEXT NOT NULL,
+  nascimento DATE NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+DROP TABLE IF EXISTS tb_setor;
+CREATE TABLE tb_setor (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  nome TEXT NOT NULL
+);
+
+DROP TABLE IF EXISTS tb_categoria;
+CREATE TABLE tb_categoria (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  nome TEXT NOT NULL
+);
+
+DROP TABLE IF EXISTS tb_produto;
+CREATE TABLE tb_produto (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  nome TEXT NOT NULL,
+  categoria_id INTEGER NOT NULL,
+  setor_id INTEGER NOT NULL,
+  FOREIGN KEY (categoria_id) REFERENCES tb_categoria(id),
+  FOREIGN KEY (setor_id) REFERENCES tb_setor(id)
+);
+
+INSERT INTO tb_usuario(nome, nascimento) VALUES ('Administrador', '2024-07-23');
