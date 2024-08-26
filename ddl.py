@@ -1,14 +1,14 @@
-import sqlite3
-from Globals import DATABASE_NAME
+"""
+    Codígo reponsável pela construção do banco de dados.
+"""
+from helpers.database import get_db_connection
 
-connection = sqlite3.connect(DATABASE_NAME)
+with open('schema.sql', encoding="UTF-8") as f:
+    shema_sql = f.read()
 
-with open('schema.sql') as f:
-  connection.executescript(f.read())
-  
-#ursor = connection.cursor()
-
-#cursor.execute("INSERT INTO tb_usuario(nome, nascimento) VALUES ('Administrador', '2024-07-23')")
-
-
-connection.close()
+conn = get_db_connection()
+cursor = conn.cursor()
+cursor.execute(shema_sql)
+conn.commit()
+cursor.close()
+conn.close()
